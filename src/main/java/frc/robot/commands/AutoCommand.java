@@ -11,7 +11,7 @@ public class AutoCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem m_subsystem;
   
-  private double throttle, turn;
+  private double throttle, turn, dTurn;
 
   /**
    * Creates a new ExampleCommand.
@@ -27,14 +27,17 @@ public class AutoCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    throttle = turn = 0;
+    throttle = 0;
+    dTurn = turn = 0.01;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    throttle = 0;
-    turn = 1;
+    throttle = 0.5;
+    if (turn == 0f || turn == 1f)
+      dTurn *= -1;
+    turn += dTurn;
     m_subsystem.manualDrive(throttle, turn);
   }
 
