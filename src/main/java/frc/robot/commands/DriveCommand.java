@@ -30,7 +30,7 @@ public class DriveCommand extends CommandBase {
 	@Override
 	public void execute() {
 		// update controller values
-		throttle = controller.getLeftY();
+		throttle = -controller.getLeftY();
 		turn = controller.getRightX();
 
 		// set to 0 if in deadzone
