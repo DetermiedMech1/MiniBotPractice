@@ -6,8 +6,8 @@ package frc.robot;
 
 public final class Constants {
     public static class MotorConstants {
-        public static int LEFT_MOTOR_ID = 1;
-        public static int RIGHT_MOTOR_ID = 2;
+        public static int LEFT_MOTOR_ID = 0;
+        public static int RIGHT_MOTOR_ID = 1;
     }
 
     public static class DriveConstants {
