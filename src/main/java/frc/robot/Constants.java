@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -15,19 +17,33 @@ package frc.robot;
 public final class Constants {
     public static class MotorConstants
     {
-        public static int LEFT_MOTOR_ID = 1;
-        public static int RIGHT_MOTOR_ID = 2;
+        public static int LEFT_MOTOR_ID = 0;
+        public static int RIGHT_MOTOR_ID = 1;
     }
 
     public static class DriveConstants
     {
-        public static int SPEED = 0;
+        public static double SPEED = 0.5;
+        public static final double kTrackingP = 0.03; // 0.02
+        public static final double kTrackingI = 0.0; // 0.003
+        public static final double kTrackingD = 0.02; // 0.001
     }
 
     public static class DeadZone
     {
-        public static double THROTTLE_DEADZONE = -0.05;
-        public static double TURN_MAX_DEADZONE = 0.05;
-        public static double TURN_MIN_DEADZONE = -0.05;
+        public static double THROTTLE_DEADZONE = -0.3;
+        public static double TURN_MAX_DEADZONE = 0.3;
+        public static double TURN_MIN_DEADZONE = -TURN_MAX_DEADZONE;
+    }
+
+    public static class LimelightConstants {
+        public static final double kLLHeight = Units.inchesToMeters(24.5);
+        public static final double kLLPitch = Units.degreesToRadians(0);
+        public static final double kMinObjectAvoidanceDistance = Units.inchesToMeters(12);
+        public static final double kObjectHeight = Units.inchesToMeters(12);
+        public static final double kObjectPitch = Units.degreesToRadians(0);
+
+        public static final int[] kBlueAprilTags = new int[]{1,2,3,4};
+        public static final int[] kRedAprilTags = new int[]{5,6,7,8};
     }
 }

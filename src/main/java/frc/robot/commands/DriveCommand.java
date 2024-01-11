@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.XboxController;
@@ -38,10 +39,8 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double tempThrottle = controller.getLeftY();
-    throttle = tempThrottle < DeadZone.THROTTLE_DEADZONE ? tempThrottle : throttle;
-    double tempTurn = controller.getRightX();
-    turn = tempTurn > DeadZone.TURN_MAX_DEADZONE || tempTurn < DeadZone.TURN_MIN_DEADZONE ? tempTurn : turn;
+    throttle = Math.abs(controller.getLeftY()) > 0.2 ? -controller.getLeftY() : 0; 
+    turn = Math.abs(controller.getRightX()) > 0.2 ? controller.getRightX() : 0;
     m_subsystem.manualDrive(throttle, turn);
   }
 

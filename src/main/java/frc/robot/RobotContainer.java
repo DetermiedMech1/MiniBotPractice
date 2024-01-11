@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LimeLight;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -22,9 +23,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private static final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
+  private static final LimeLight m_limeLight = new LimeLight();
 
   private static final DriveCommand m_driveCommand = new DriveCommand(m_driveSubsystem);
-  private static final AutoCommand m_autoCommand = new AutoCommand(m_driveSubsystem);
+  private static final AutoCommand m_autoCommand = new AutoCommand(m_driveSubsystem, m_limeLight);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
