@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
@@ -12,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
 	private final DriveTrainSubsystem driveTrainSubsystem = new DriveTrainSubsystem();
 	private final DriveCommand driveCommand = new DriveCommand(driveTrainSubsystem);
+	private final AutoCommand autoCommand = new AutoCommand(driveTrainSubsystem);
 
 	public RobotContainer() {
 		configureButtonBindings();
@@ -20,7 +22,7 @@ public class RobotContainer {
 	private void configureButtonBindings() {}
 
 	public Command getAutonomousCommand() {
-		return null;
+		return autoCommand;
 	}
 
 	public Command getTeleopCommand() {
