@@ -17,13 +17,13 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     public static class MotorConstants
     {
-        public static int LEFT_MOTOR_ID = 0;
-        public static int RIGHT_MOTOR_ID = 1;
+        public static final int LEFT_MOTOR_ID = 0;
+        public static final int RIGHT_MOTOR_ID = 1;
     }
 
     public static class DriveConstants
     {
-        public static double SPEED = 0.5;
+        public static final double SPEED = 0.5;
         public static final double kTrackingP = 0.03; // 0.02
         public static final double kTrackingI = 0.0; // 0.003
         public static final double kTrackingD = 0.02; // 0.001
@@ -31,9 +31,8 @@ public final class Constants {
 
     public static class DeadZone
     {
-        public static double THROTTLE_DEADZONE = -0.3;
-        public static double TURN_MAX_DEADZONE = 0.3;
-        public static double TURN_MIN_DEADZONE = -TURN_MAX_DEADZONE;
+        public static final double THROTTLE_DEADZONE = 0.2;
+        public static final double TURN_DEADZONE = 0.2;
     }
 
     public static class LimelightConstants {

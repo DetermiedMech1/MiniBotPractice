@@ -4,13 +4,12 @@
 
 package frc.robot.commands;
 
-import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.XboxController;
 import static frc.robot.Constants.DeadZone;
 
-/** An example command that uses an example subsystem. */
+/** A Command that drives the robot using input from an XboxController.*/
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem m_subsystem;
@@ -19,9 +18,9 @@ public class DriveCommand extends CommandBase {
   private double throttle, turn;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new DriveCommand.
    *
-   * @param subsystem The subsystem used by this command.
+   * @param subsystem The Drive Subsystem used by this command.
    */
   public DriveCommand(DriveSubsystem subsystem) {
     m_subsystem = subsystem;
@@ -39,8 +38,8 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    throttle = Math.abs(controller.getLeftY()) > 0.2 ? -controller.getLeftY() : 0; 
-    turn = Math.abs(controller.getRightX()) > 0.2 ? controller.getRightX() : 0;
+    throttle = Math.abs(controller.getLeftY()) > DeadZone.THROTTLE_DEADZONE ? -controller.getLeftY() : 0; 
+    turn = Math.abs(controller.getRightX()) > DeadZone.TURN_DEADZONE ? controller.getRightX() : 0;
     m_subsystem.manualDrive(throttle, turn);
   }
 

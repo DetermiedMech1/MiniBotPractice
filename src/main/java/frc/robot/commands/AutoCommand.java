@@ -6,11 +6,11 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimeLight;
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.DriveConstants;
-/** An example command that uses an example subsystem. */
+
+/** A Command that autonomously guides the robot using LimeLight tracking. */
 public class AutoCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem m_drivesystem;
@@ -20,9 +20,10 @@ public class AutoCommand extends CommandBase {
   private double turn;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new AutoCommand.
    *
-   * @param subsystem The subsystem used by this command.
+   * @param subsystem The Drive Subsystem used by this command.
+   * @param limelight The LimeLight Subsystem used by this command.
    */
   public AutoCommand(DriveSubsystem subsystem, LimeLight limelight) {
     m_drivesystem = subsystem;
@@ -31,13 +32,6 @@ public class AutoCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
     addRequirements(limelight);
-  }
-
-  public double calculateAngularVelocity()
-  {
-    if (m_limelight.getXAngle() != 0)
-      return tracker.calculate(m_limelight.getXAngle(), 0);
-    return 0;
   }
 
   // Called when the command is initially scheduled.
@@ -52,7 +46,11 @@ public class AutoCommand extends CommandBase {
 /*    turn = m_limelight.getXAngle();
     turn = MathUtil.clamp(turn/39, -1f, 1f);
     m_drivesystem.manualDrive(0, turn);*/
-    m_drivesystem.manualDrive(0, -calculateAngularVelocity());
+    if (m_limelight.getXAngle() != 0)
+      turn = tracker.calculate(m_limelight.getXAngle(), 0);
+    else
+      turn = 0;
+    m_drivesystem.manualDrive(0, -turn);
   }
 
   // Called once the command ends or is interrupted.
