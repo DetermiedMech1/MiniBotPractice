@@ -22,8 +22,8 @@ public final class Constants {
     }
     public static class Deadzone {
         public static final double RTDeadzone = 0.5;
-        public static final double LSDeadzone = 0.5;
-        public static final double RSDeadzone = 0.5;
+        public static final double LSDeadzone = 0.3;
+        public static final double RSDeadzone = 0.3;
         public static final double LTDeadzone = 0.5;
     }
 }
