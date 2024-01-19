@@ -32,6 +32,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 	}
 
 	public void manualDrive(double throttle, double turn) {
+		System.out.println("b");
 		differentialDrive.arcadeDrive(throttle, turn);
 	}
 

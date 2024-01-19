@@ -26,7 +26,8 @@ public class AutoCommand extends CommandBase {
 
 	@Override
 	public void execute() {
-		driveTrain.manualDrive(0, 0.1);
+		System.out.println("a");
+		driveTrain.manualDrive(0, 0.5);
 	}
 
 	@Override
@@ -34,6 +35,8 @@ public class AutoCommand extends CommandBase {
 
 	@Override
 	public boolean isFinished() {
-        return (Timer.getFPGATimestamp() - startTime) >= 3;
+		boolean a = (Timer.getFPGATimestamp() - startTime) >= 3;
+        System.out.println(a);
+		return a;
 	}
 }
